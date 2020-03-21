@@ -6,6 +6,17 @@ use App\Http\Controllers\Page\BaseController;
 
 class IndexController extends BaseController
 {
-    protected $hasJs = true;
+    protected $hasJs = false;
     protected $viewName = 'index';
+
+    protected function viewData():array
+    {
+        return [
+            'links' => [
+                'download',
+                'parser',
+                'sort',
+            ],
+        ];
+    }
 }

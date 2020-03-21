@@ -2,8 +2,8 @@
 <html lang='en'>
     <head>
         <title>Lumen - {{$viewName}}</title>
-        {{-- <link rel='icon' href='./assets/img/icons/{{$viewName}}.png' type='image/png'/> --}}
-        {{-- <link rel='shortcut icon' href='./assets/img/icons/{{$viewName}}.png' type='image/png'/> --}}
+        <link rel='icon' href='./assets/img/icons/{{$viewName}}.png' type='image/png'/>
+        <link rel='shortcut icon' href='./assets/img/icons/{{$viewName}}.png' type='image/png'/>
         <link rel='stylesheet' type='text/css' href='./assets/css/bootstrap.min.css'/>
         <link rel='stylesheet' type='text/css' href='./assets/css/common.css#{{$time}}'/>
         <link rel='stylesheet' type='text/css' href='./assets/css/{{$viewName}}.css#{{$time}}'/>
@@ -15,7 +15,7 @@
         @endif
     </head>
     <body>
-        @hasSection('header')
+        {{-- @hasSection('header')
             <header>
                 @yield('header')
             </header>
@@ -25,16 +25,16 @@
                 <button class='aside__button'></button>
                 @yield('aside')
             </aside>
-        @endif
+        @endif --}}
         @hasSection('main')
-            <main>
+            <main class='container'>
                 @yield('main')
             </main>
         @endif
-        @hasSection('footer')
+        {{-- @hasSection('footer')
             <footer>
                 @yield('footer')
             </footer>
-        @endif
+        @endif --}}
     </body>
 </html>

@@ -1,0 +1,28 @@
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+$extra: 1200px;
+
+@mixin above($size) {
+    @media (min-width: #{$size}) {
+        @content;
+    }
+}
+
+@mixin below($size) {
+    @media (max-width: #{$size}) {
+        @content;
+    }
+}
+
+@mixin between($min, $max) {
+    @media (min-width: #{$min}) and (max-width: #{$max}) {
+        @content;
+    }
+}
+
+@mixin exclude($below, $above) {
+    @media ((min-width: #{$below}) or (min-width: #{$above})) {
+        @content;
+    }
+}

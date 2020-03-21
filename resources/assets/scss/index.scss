@@ -1,13 +1,47 @@
-@import './global/mixin';
+@import './include/global';
 
-main {
-    color: #F00;
+$iconUrl: '/assets/img/icons/';
+$links: ('download', 'parser', 'sort');
 
-    p {
-        color: #0f0;
+$linkSize: 60px;
+
+main nav {
+    margin: 200px auto 0;
+    max-width: 200px;
+}
+
+a.link {
+    display: flex;
+    font-size: 24px;
+    height: $linkSize;
+    line-height: $linkSize;
+    text-transform: capitalize;
+
+    &:nth-child(n + 2) {
+        margin-top: 20px;
     }
 
-    a {
-        color: $color;
+    &:before {
+        background: transparent top left no-repeat;
+        background-size: contain;
+        content: '';
+        display: inline-block;
+        height: 100%;
+        margin-right: 10px;
+        width: $linkSize;
+    }
+
+    @each $link in $links {
+        &.#{$link} {
+            &:before {
+                background-image: url($iconUrl + $link + '.png');
+            }
+        }
+    }
+
+    &:hover {
+        &:before {
+            opacity: 0.6;
+        }
     }
 }

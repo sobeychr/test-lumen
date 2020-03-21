@@ -2,6 +2,8 @@
 
 @section('main')
     <nav>
-        <a>test</a>
+        @foreach($links as $link)
+            <a href='{{$link}}' class='link {{$link}}'>{{$link}}</a>
+        @endforeach
     </nav>
 @endsection
