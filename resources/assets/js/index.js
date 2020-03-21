@@ -1,9 +1,15 @@
-const tt = 'asvjbd';
+import get from 'lodash/get';
 
-const test = () => {
-    console.log('tt', {
-        tt,
-    });
+const tt = {
+    alpha: {
+        test: [
+            'dfb',
+            'sdfvds',
+            'dsfbe',
+            'qwqwqw',
+            '034n5t3',
+        ],
+    },
 };
 
-test();
+console.log('tt', get(tt, 'alpha.test[2]', 'not found'));

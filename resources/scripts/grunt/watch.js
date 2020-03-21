@@ -6,7 +6,7 @@ module.exports = grunt => {
     return {
         css: {
             files: ['./resources/assets/scss/**/*.scss'],
-            tasks: ['sass'],
+            tasks: ['sass:main'],
         },
         js: {
             files: ['./resources/assets/js/**/*.js'],
