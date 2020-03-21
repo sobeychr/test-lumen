@@ -15,26 +15,29 @@
         @endif
     </head>
     <body>
-        {{-- @hasSection('header')
-            <header>
-                @yield('header')
+        @hasSection('header')
+            <header class='header bg-dark'>
+                <a href='/' class='main-link'>&lt;</a>
+                <span>@yield('header')</span>
             </header>
         @endif
+        {{--
         @hasSection('aside')
             <aside>
                 <button class='aside__button'></button>
                 @yield('aside')
             </aside>
-        @endif --}}
+        @endif
+        --}}
         @hasSection('main')
             <main class='container'>
                 @yield('main')
             </main>
         @endif
-        {{-- @hasSection('footer')
+        @hasSection('footer')
             <footer>
                 @yield('footer')
             </footer>
-        @endif --}}
+        @endif
     </body>
 </html>

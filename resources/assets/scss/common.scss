@@ -1,5 +1,60 @@
 @import './include/global';
 
-main.container {
+a.main-link {
+    color: #dd4814;
+    font-weight: 900;
+
+    &:hover {
+        color: #923819;
+        text-decoration: none;
+    }
+}
+
+header {
+    margin-bottom: 50px;
+    padding: 20px;
+    font-size: 1.5em;
+}
+
+main {
     transition: max-width .2s linear;
+}
+
+$inputColorOut: #bbb;
+$inputColorIn: #00bc8c;
+$inputColorEdit: #fff;
+
+input[type='text'],
+textarea {
+    border: 1px solid $inputColorOut;
+    background: #303030;
+    color: $inputColorOut;
+    padding: 5px;
+    outline: none;
+
+    &:focus {
+        border-color: $inputColorIn;
+        box-shadow: 0 0 2px $inputColorIn;
+        color: $inputColorIn;
+    }
+
+    &.edited {
+        border-color: $inputColorEdit;
+        color: $inputColorEdit;
+    }
+}
+
+pre:not(:empty) {
+    background: #131313;
+    border-left: 5px solid #3498DB;
+    border-right: 2px solid #3498DB;
+    color: #ddd;
+    padding: 5px;
+}
+
+.global-alert-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
 }

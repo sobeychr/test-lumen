@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 
 class BaseController extends Controller
 {
-
-    protected $hasJquery = false;
     protected $hasJs = false;
 
     protected $viewName = '';

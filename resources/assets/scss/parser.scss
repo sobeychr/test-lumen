@@ -1,0 +1,26 @@
+@import './include/global';
+
+main {
+    min-width: $medium;
+
+    p.parser {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 1rem 0;
+
+        button {
+            width: 45%;
+        }
+    }
+
+    #in {
+        max-width: 100%;
+        max-height: 750px;
+        height: 250px;
+        width: 100%;
+    }
+
+    #out {
+        margin-top: 50px;
+    }
+}

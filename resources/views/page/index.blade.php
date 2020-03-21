@@ -3,7 +3,7 @@
 @section('main')
     <nav>
         @foreach($links as $link)
-            <a href='{{$link}}' class='link {{$link}}'>{{$link}}</a>
+            <a href='{{$link}}' class='main-link {{$link}}'>{{$link}}</a>
         @endforeach
     </nav>
 @endsection

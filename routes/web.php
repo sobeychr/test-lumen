@@ -23,7 +23,7 @@ $router->get('/test', function() use ($router) {
 
 $router->group(['namespace' => 'Page'], function() use ($router) {
     $router->get('/',         ['uses' => 'IndexController@main']);
-    $router->get('/download', ['uses' => 'DownloadController@main']);
+    // $router->get('/download', ['uses' => 'DownloadController@main']);
     $router->get('/parser',   ['uses' => 'ParserController@main']);
-    $router->get('/sort',     ['uses' => 'SortController@main']);
+    // $router->get('/sort',     ['uses' => 'SortController@main']);
 });
