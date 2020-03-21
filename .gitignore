@@ -1,6 +1,13 @@
 /.idea
+/node_modules
+/public/assets/css
+/public/assets/js
+/resources/scripts/grunt/.sass-cache
 /vendor
+
 Homestead.json
 Homestead.yaml
+
 .env
 .phpunit.result.cache
+yarn-error.log

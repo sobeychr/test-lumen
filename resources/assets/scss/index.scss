@@ -1,0 +1,13 @@
+@import './global/mixin';
+
+main {
+    color: #F00;
+
+    p {
+        color: #0f0;
+    }
+
+    a {
+        color: $color;
+    }
+}
