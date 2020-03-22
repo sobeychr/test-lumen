@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 
 class BaseController extends Controller
 {
+    protected $addJs = [];
     protected $hasJs = false;
-
     protected $viewName = '';
 
     public function main():string
@@ -15,6 +15,7 @@ class BaseController extends Controller
         $this->beforeView();
 
         $viewData = array_merge([
+            'addJs' => $this->addJs,
             'hasJs' => $this->hasJs,
             'viewName' => $this->viewName,
             'time' => time(),

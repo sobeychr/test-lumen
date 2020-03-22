@@ -16,7 +16,19 @@
         });
     };
 
+    win.dropdownSelect = () => {
+        $('.dropdown .dropdown-item').off('click').on('click', function() {
+            const $this = $(this);
+            $this.parents('.dropdown:first')
+                .attr('data-index', $this.data('index'))
+                .find('.title:first').text($this.text());
+        });
+    };
+
     $(function() {
         win.bindInputs();
+        if(typeof Popper !== 'undefined') {
+            win.dropdownSelect();
+        }
     });
 })(jQuery, window);

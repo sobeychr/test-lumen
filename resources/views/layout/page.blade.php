@@ -8,6 +8,9 @@
         <link rel='stylesheet' type='text/css' href='./assets/css/common.css#{{$time}}'/>
         <link rel='stylesheet' type='text/css' href='./assets/css/{{$viewName}}.css#{{$time}}'/>
         @if($hasJs)
+            @foreach($addJs as $file)
+                <script src='./assets/js/{{$file}}.js'></script>
+            @endforeach
             <script src='./assets/js/jquery.min.js'></script>
             <script src='./assets/js/bootstrap.min.js'></script>
             <script src='./assets/js/common.js#{{$time}}'></script>
@@ -21,14 +24,6 @@
                 <span>@yield('header')</span>
             </header>
         @endif
-        {{--
-        @hasSection('aside')
-            <aside>
-                <button class='aside__button'></button>
-                @yield('aside')
-            </aside>
-        @endif
-        --}}
         @hasSection('main')
             <main class='container'>
                 @yield('main')
