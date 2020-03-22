@@ -53,7 +53,7 @@ const newAlert = ({
         if(autoDismiss) {
             setTimeout(
                 () => alert.alert('close'),
-                showDelay + autoDismiss
+                showDelay + autoDismiss,
             );
         }
     }

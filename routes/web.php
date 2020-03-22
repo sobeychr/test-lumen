@@ -21,6 +21,7 @@ $router->get('/test', function() use ($router) {
     return $router->app->version();
 });
 
+// Pages
 $router->group(['namespace' => 'Page'], function() use ($router) {
     $router->get('/',         ['uses' => 'IndexController@main']);
     // $router->get('/download', ['uses' => 'DownloadController@main']);
@@ -28,6 +29,7 @@ $router->group(['namespace' => 'Page'], function() use ($router) {
     $router->get('/sort',     ['uses' => 'SortController@main']);
 });
 
+// API
 $router->group([
     'namespace' => 'Api',
     'prefix'    => 'api',

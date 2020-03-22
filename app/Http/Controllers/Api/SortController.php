@@ -46,7 +46,7 @@ class SortController extends BaseController
         }
 
         return response()->json([
-            'id' => $folder,
+            'folder' => $folder,
             'path' => $folderPath,
             'files' => $files,
             'length' => count($files),

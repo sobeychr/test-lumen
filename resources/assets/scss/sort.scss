@@ -1,4 +1,43 @@
+$maxHeight: 770px;
+
 #folder {
     display: inline-block;
     margin-right: 20px;
+}
+
+#list {
+    margin-top: 30px;
+    max-height: $maxHeight;
+    overflow-y: auto;
+
+    .list-group-item {
+        cursor: pointer;
+
+        .name {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .details {
+            color: #888;
+            display: block;
+            font-size: 0.8rem;
+
+            .date {
+                display: block;
+                font-style: italic;
+            }
+        }
+    }
+}
+
+#preview {
+    .hide {
+        display: none;
+    }
+
+    img,
+    video {
+        max-height: $maxHeight;
+        max-width: 100%;
+    }
 }

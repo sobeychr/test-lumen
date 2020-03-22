@@ -10,10 +10,14 @@ a.main-link {
     }
 }
 
-button.disabled {
+button.disabled,
+.dropdown.disabled {
     cursor: default;
     font-style: italic;
     pointer-events: none;
+}
+.dropdown.disabled .title {
+    font-style: italic;
 }
 
 header {
@@ -63,4 +67,12 @@ textarea {
     bottom: 20px;
     left: 20px;
     right: 20px;
+}
+
+.modal-open .modal[data-backdrop='static'] {
+    overflow-y: hidden;
+}
+
+.list-group-item.template {
+    display: none;
 }

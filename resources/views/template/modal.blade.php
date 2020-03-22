@@ -1,15 +1,23 @@
-<div class='modal fade' id='{{$id ?? 'modal'}}' tabindex='-1' role='dialog' aria-hidden='true'>
+<div class='modal {{isset($fade) ? 'fade' : ''}}' id='{{$id ?? 'modal'}}' data-backdrop='static' tabindex='-1' role='dialog' aria-hidden='true'>
     <div class='modal-dialog modal-dialog-centered' role='document'>
         <div class='modal-content'>
             @isset($title)
                 <div class='modal-header'>
                     <h5 class='modal-title'>{{$title}}</h5>
-                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                        <span aria-hidden='true'>&times;</span>
-                    </button>
+                    @if(isset($titleClose) && $titleClose)
+                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                        </button>
+                    @endif
                 </div>
             @endisset
-            @isset($body)
+            @isset($progress)
+                <div class='modal-body'>
+                    <div class='progress' style='height: 15px;'>
+                        <div class='progress-bar progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%;'></div>
+                    </div>
+                </div>
+            @elseif(isset($body))
                 <div class='modal-body'>
                     {{$body}}
                 </div>
