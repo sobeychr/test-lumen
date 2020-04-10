@@ -28,6 +28,11 @@ class ParserController extends BaseController
                     'off' => 'minify',
                     'func' => 'jsonencode',
                 ],
+                'JSonRich' => [
+                    'on' => 'pretty',
+                    'off' => 'minify',
+                    'func' => 'jsonrichencode',
+                ],
                 'Url' => [
                     'on' => 'encode',
                     'off' => 'decode',

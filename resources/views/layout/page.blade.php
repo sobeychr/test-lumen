@@ -5,16 +5,16 @@
         <link rel='icon' href='./assets/img/icons/{{$viewName}}.png' type='image/png'/>
         <link rel='shortcut icon' href='./assets/img/icons/{{$viewName}}.png' type='image/png'/>
         <link rel='stylesheet' type='text/css' href='./assets/css/bootstrap.min.css'/>
-        <link rel='stylesheet' type='text/css' href='./assets/css/common.css#{{$time}}'/>
-        <link rel='stylesheet' type='text/css' href='./assets/css/{{$viewName}}.css#{{$time}}'/>
+        <link rel='stylesheet' type='text/css' href='./assets/css/common.css?{{$time}}'/>
+        <link rel='stylesheet' type='text/css' href='./assets/css/{{$viewName}}.css?{{$time}}'/>
         @if($hasJs)
             @foreach($addJs as $file)
                 <script src='./assets/js/{{$file}}.js'></script>
             @endforeach
             <script src='./assets/js/jquery.min.js'></script>
             <script src='./assets/js/bootstrap.min.js'></script>
-            <script src='./assets/js/common.js#{{$time}}'></script>
-            <script src='./assets/js/{{$viewName}}.js#{{$time}}'></script>
+            <script src='./assets/js/common.js?{{$time}}'></script>
+            <script src='./assets/js/{{$viewName}}.js?{{$time}}'></script>
         @endif
     </head>
     <body>

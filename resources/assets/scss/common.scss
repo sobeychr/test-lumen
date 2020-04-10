@@ -62,11 +62,13 @@ textarea {
     }
 }
 
+$gacWidth: 620px;
 .global-alert-container {
     position: fixed;
     bottom: 20px;
-    left: 20px;
-    right: 20px;
+    left: calc(50% - #{$gacWidth * .5});
+    right: calc(50% - #{$gacWidth * .5});
+    text-shadow: 1px 1px 2px #000;
 }
 
 .modal-open .modal[data-backdrop='static'] {

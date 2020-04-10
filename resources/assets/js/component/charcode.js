@@ -4,10 +4,10 @@ const charcodeToStr = str => {
     let j = 2;
     let c;
     for(let i=0; i<len; i+=j) {
-        j = 2;
+        j = 3;
         c = parseInt(str.substr(i, j), 10);
         if(c > 255) {
-            j++;
+            j = 2;
             c = parseInt(str.substring(i, j), 10);
         }
         result.push(String.fromCharCode(c));
