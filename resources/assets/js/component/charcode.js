@@ -8,7 +8,7 @@ const charcodeToStr = str => {
         c = parseInt(str.substr(i, j), 10);
         if(c > 255) {
             j = 2;
-            c = parseInt(str.substring(i, j), 10);
+            c = parseInt(str.substr(i, j), 10);
         }
         result.push(String.fromCharCode(c));
     }
