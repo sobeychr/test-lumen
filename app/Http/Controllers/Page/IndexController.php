@@ -12,9 +12,10 @@ class IndexController extends BaseController
     {
         return [
             'links' => [
-                'download',
+                // 'download',
                 'parser',
                 'sort',
+                'timer',
             ],
         ];
     }

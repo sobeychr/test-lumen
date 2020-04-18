@@ -27,6 +27,7 @@ $router->group(['namespace' => 'Page'], function() use ($router) {
     // $router->get('/download', ['uses' => 'DownloadController@main']);
     $router->get('/parser',   ['uses' => 'ParserController@main']);
     $router->get('/sort',     ['uses' => 'SortController@main']);
+    $router->get('/timer',    ['uses' => 'TimerController@main']);
 });
 
 // API
