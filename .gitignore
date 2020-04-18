@@ -10,4 +10,5 @@ Homestead.yaml
 
 .env
 .phpunit.result.cache
+composer.phar
 yarn-error.log

@@ -119,7 +119,9 @@ import { smartConvert } from './component/filesize';
 
     const bindList = (isEnable = true) => {
         if(isEnable) {
-            $(`${selItems} .name`).on('click', function() {
+            $(`${selItems} .name`).on('click', function(e) {
+                e.preventDefault();
+
                 $(`${selItems}.active`).removeClass('active');
                 $('#preview img, #preview video')
                     .addClass('hide')
@@ -127,17 +129,21 @@ import { smartConvert } from './component/filesize';
 
                 const $this = $(this);
                 const $li = $this.parents('.list-group-item:first');
+
                 const fullpath = $li.attr('data-fullpath');
                 const height = $li.attr('data-height');
                 const width = $li.attr('data-width');
+
                 const selPreview = isVideo(fullpath) ? 'video' : 'img';
+                const path = convertFilepath(fullpath);
 
                 $li.addClass('active');
                 $li.find('.input-name:first').focus();
 
+                $('#preview a').attr('href', path)
                 $(`#preview ${selPreview}`)
                     .removeClass('hide')
-                    .attr('src', convertFilepath(fullpath));
+                    .attr('src', path);
 
                 $(`#preview .height`).removeClass('hide').text(height);
                 $(`#preview .width`).removeClass('hide').text(width);
@@ -181,8 +187,11 @@ import { smartConvert } from './component/filesize';
                         $li.find('.btn-delete:first').trigger('click');
                         triggerNextList();
                     }
-                    else if(key === 'Up') {
+                    else if(key === 'ArrowDown') {
                         triggerNextList();
+                    }
+                    else if(key === 'ArrowUp') {
+                        triggerNextList(false);
                     }
                 }
             });
@@ -239,7 +248,30 @@ import { smartConvert } from './component/filesize';
         }
     };
 
-    const triggerNextList = () => $(`${selItems}.active`).next().find('.name:first').trigger('click');
+    const triggerNextList = (next = true) => {
+        const $item = next
+            ? $(`${selItems}.active`).next(':not(.template)')
+            : $(`${selItems}.active`).prev(':not(.template)');
+
+        if($item.length) {
+            $item.find('.name:first').trigger('click');
+        }
+        else {
+            newAlert({
+                content: `Reach ${next ? 'end' : 'start'} limit`,
+                level: 'warning',
+                ref: 'sort-listing',
+            });
+        }
+
+        /*
+        if(!$item.length) {
+            $item = next
+                ? $(`${selItems}:first`)
+                : $(`${selItems}:last`);
+        }
+        */
+    }
 
     $(function() {
         bindEvents();

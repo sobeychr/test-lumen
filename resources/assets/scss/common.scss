@@ -76,6 +76,7 @@ $gacWidth: 620px;
     left: calc(50% - #{$gacWidth * .5});
     right: calc(50% - #{$gacWidth * .5});
     text-shadow: 1px 1px 2px #000;
+    z-index: 9001;
 }
 
 .modal-open .modal[data-backdrop='static'] {

@@ -11,6 +11,7 @@ const refs = {};
 const showDelay = 150;
 const titleHtml = $('<h4/>').addClass('alert-heading');
 
+/*
 export const clearAlert = ref => {
     console.log('clearAlert', {
         ref,
@@ -20,6 +21,7 @@ export const clearAlert = ref => {
         refs[ref].alert('close');
     };
 };
+*/
 
 const newAlert = ({
     autoDismiss = 3500,
@@ -31,16 +33,17 @@ const newAlert = ({
 }) => {
     let alert;
 
+    /*
     if(ref) {
         alert = refs[ref];
     }
     if(!alert) {
         alert = $('<div/>');
     }
+    */
 
-    alert
+    alert = $('<div/>')
         .addClass(`alert alert-${level} fade`)
-        .attr('role', 'alert')
         .empty();
 
     if(title) {
@@ -64,6 +67,9 @@ const newAlert = ({
         $('body').append(container);
     }
 
+    container.append(alert);
+    setTimeout(() => alert.addClass('show'), showDelay);
+    /*
     if(!ref || !refs[ref]) {
         container.append(alert);
         setTimeout(() => alert.addClass('show'), showDelay);
@@ -72,6 +78,7 @@ const newAlert = ({
     if(ref) {
         refs[ref] = alert;
     }
+    */
 };
 
 export default newAlert;
