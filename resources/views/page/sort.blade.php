@@ -42,13 +42,13 @@
             </ul>
         </div>
         <div class='col-6'>
-            <div id='preview'>
+            <a href='#' id='preview' target='_blank'>
                 <img class='hide'/>
                 <video class='hide' autoplay controls loop muted></video>
 
                 <p class='width hide'></p>
                 <p class='height hide'></p>
-            </div>
+            </a>
         </div>
     </div>
     @include('template.modal', [
