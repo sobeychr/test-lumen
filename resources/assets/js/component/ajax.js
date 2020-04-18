@@ -4,7 +4,7 @@ const request = (method, {
     url,
     data,
     done,
-    sucess,
+    success,
     fail,
 }) => {
     console.group('Ajax request', time());
@@ -19,9 +19,9 @@ const request = (method, {
         dataType: 'json',
     })
         .done(function(result) {
-            console.log('Sucess', result);
+            console.log('Success', result);
             if(typeof sucess === 'function') {
-                sucess(result);
+                success(result);
             }
         })
         .fail(function(result) {

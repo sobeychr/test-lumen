@@ -5,6 +5,7 @@ namespace App\Config;
 class SortConfig
 {
     const FOLDERS = [
+        // 'C:/Disk/Downloads/',
         'E:/Downloads/',
         'E:/Downloads/4chan/',
         'E:/Downloads/9gag/',
@@ -16,17 +17,8 @@ class SortConfig
         'E:/Downloads/videos/',
     ];
 
-    const STATUS_UNSORTED = 1;
-    const STATUS_DELETE = 2;
-    const STATUS_SORT = 3;
-    const STATUS_NAME = 4;
-    const STATUS_WEB = 4;
-
-    const STATUS = [
-        STATUS_UNSORTED,
-        STATUS_DELETE,
-        STATUS_SORT,
-        STATUS_NAME,
-        STATUS_WEB,
-    ];
+    const DEST_DELETE = 'C:/Disk/Downloads/sort/delete/';
+    const DEST_EDIT = 'C:/Disk/Downloads/sort/edit/';
+    const DEST_NAME = 'C:/Disk/Downloads/sort/name/';
+    const DEST_UNSORT = 'C:/Disk/Downloads/sort/unsort/';
 }

@@ -1,5 +1,5 @@
-<div class='modal {{isset($fade) ? 'fade' : ''}}' id='{{$id ?? 'modal'}}' data-backdrop='static' tabindex='-1' role='dialog' aria-hidden='true'>
-    <div class='modal-dialog modal-dialog-centered' role='document'>
+<div class='modal {{isset($fade) ? 'fade' : ''}}' id='{{$id ?? 'modal'}}' data-backdrop='static' tabindex='-1' aria-hidden='true'>
+    <div class='modal-dialog modal-dialog-centered'>
         <div class='modal-content'>
             @isset($title)
                 <div class='modal-header'>
@@ -14,7 +14,7 @@
             @isset($progress)
                 <div class='modal-body'>
                     <div class='progress' style='height: 15px;'>
-                        <div class='progress-bar progress-bar-striped progress-bar-animated' role='progressbar' style='width: 100%;'></div>
+                        <div class='progress-bar progress-bar-striped progress-bar-animated' style='width: 100%;'></div>
                     </div>
                 </div>
             @elseif(isset($body))

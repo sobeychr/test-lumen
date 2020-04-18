@@ -35,5 +35,6 @@ $router->group([
     'namespace' => 'Api',
     'prefix'    => 'api',
 ], function() use ($router) {
+    $router->post('/sort/launch',  ['uses' => 'SortController@launch']);
     $router->get('/sort/{folder}', ['uses' => 'SortController@load']);
 });

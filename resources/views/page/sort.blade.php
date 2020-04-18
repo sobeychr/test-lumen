@@ -23,14 +23,20 @@
             <ul class='list-group' id='list'>
                 <li class='list-group-item list-group-item-action template' data-status='1'>
                     <div>
-                        <a class='name' href='#'></a>
+                        <a class='name ellipsis' href='#'></a>
                         <span class='details'>
                             <span class='size'></span>
                             <span class='date'></span>
                         </span>
                     </div>
                     <div>
+                        <input type='text' placeholder='// name' class='input-name'/>
 
+                        <div class='btn-group btn-group-sm buttons' aria-label='Testing'>
+                            <button type='button' class='btn btn-outline-info btn-name'>Name</button>
+                            <button type='button' class='btn btn-outline-light btn-edit'>Edit</button>
+                            <button type='button' class='btn btn-outline-danger btn-delete'>Delete</button>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -38,7 +44,10 @@
         <div class='col-6'>
             <div id='preview'>
                 <img class='hide'/>
-                <video class='hide' autoplay controls loop muted/>
+                <video class='hide' autoplay controls loop muted></video>
+
+                <p class='width hide'></p>
+                <p class='height hide'></p>
             </div>
         </div>
     </div>

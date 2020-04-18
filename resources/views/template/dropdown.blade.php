@@ -8,9 +8,9 @@
     >
         <span class='title'>{{$title}}</span>
     </button>
-    <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenuButton'>
+    <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
         @foreach($menu as $index=>$item)
-            <li role='presentation'>
+            <li>
                 <button
                     type='button'
                     tabindex='-1'

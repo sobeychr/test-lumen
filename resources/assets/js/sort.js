@@ -1,10 +1,17 @@
-import { get } from './component/ajax';
+import newAlert from './component/alert';
+import { get, post } from './component/ajax';
 import { dateTime } from './component/date';
 import { smartConvert } from './component/filesize';
 
 (function() {
+    const STATUS_UNSORT = 1;
+    const STATUS_EDIT = 2;
+    const STATUS_DELETE = 3;
+
     const disabled = 'disabled';
+    const selButtons = '#list .buttons .btn';
     const selItems = '#list .list-group-item:not(.template)';
+    const selNames = '#list .input-name';
 
     const bindEvents = () => {
         $('#folder .dropdown-item').one('click', function() {
@@ -23,12 +30,90 @@ import { smartConvert } from './component/filesize';
                     setLoading(false);
 
                     const { path: folder, files } = result;
-                    files.forEach(entry => createFile({...entry, folder}));
-
-                    bindList(true);
-                    $(`${selItems}:first .name`).trigger('click');
+                    if(folder && files) {
+                        files.forEach(entry => createFile({...entry, folder}));
+                        bindList(true);
+                        $(`${selItems}:first .name`).trigger('click');
+                    }
+                    else {
+                        const folderName = $('#folder .title').text();
+                        newAlert({
+                            autoDismiss: 5000,
+                            content: `Unable to load ${folderName}`,
+                            level: 'danger',
+                            ref: 'sort-load',
+                        });
+                    }
                 },
             });
+        });
+
+        $('#launch').on('click', function() {
+            const list = [];
+
+            $(selItems).each(function() {
+                const $this = $(this);
+                const $active = $this.find('.btn.active');
+
+                if($active.length > 0) {
+                    const status = $active.hasClass('btn-edit')
+                        ? STATUS_EDIT
+                        : $active.hasClass('btn-delete')
+                            ? STATUS_DELETE
+                            : ($this.find('.input-name').val() || STATUS_UNSORT);
+
+                    list.push([
+                        $this.attr('data-fullpath'),
+                        status,
+                    ]);
+                }
+            });
+
+            if(list.length === 0) {
+                newAlert({
+                    content: 'Cannot launch empty content',
+                    level: 'warning',
+                    ref: 'sort-launch',
+                });
+            }
+            else {
+                setLoading(true);
+                post({
+                    url: `/api/sort/launch`,
+                    data: { list },
+                    done: result => {
+                        newAlert({
+                            content: 'Completed launch',
+                            level: 'info',
+                            ref: 'sort-launch',
+                        });
+
+                        const { failures, length, successes } = result;
+
+                        if(!successes) {
+                            newAlert({
+                                content: `Error with ${list.length} items`,
+                                level: 'danger',
+                            });
+                        }
+                        else {
+                            newAlert({
+                                content: `Launched ${successes} items`,
+                                level: 'success',
+                            });
+
+                            if(failures > 0) {
+                                newAlert({
+                                    content: `${failures} fails`,
+                                    level: 'warning',
+                                });
+                            }
+                        }
+
+                        $('#load').trigger('click');
+                    },
+                });
+            }
         });
     };
 
@@ -41,40 +126,92 @@ import { smartConvert } from './component/filesize';
                     .removeAttr('src');
 
                 const $this = $(this);
-                const $parent = $this.parent()
-                const fullpath = $parent.data('fullpath')
+                const $li = $this.parents('.list-group-item:first');
+                const fullpath = $li.attr('data-fullpath');
+                const height = $li.attr('data-height');
+                const width = $li.attr('data-width');
                 const selPreview = isVideo(fullpath) ? 'video' : 'img';
-                $parent.addClass('active');
+
+                $li.addClass('active');
+                $li.find('.input-name:first').focus();
 
                 $(`#preview ${selPreview}`)
                     .removeClass('hide')
                     .attr('src', convertFilepath(fullpath));
+
+                $(`#preview .height`).removeClass('hide').text(height);
+                $(`#preview .width`).removeClass('hide').text(width);
+            });
+
+            $(selButtons).on('click', function() {
+                const $this = $(this);
+                const $input = $this.parent().siblings('.input-name');
+
+                $this.parents('.list-group-item:first').find('.name:first').trigger('click');
+
+                $this
+                    .addClass('active')
+                    .siblings('.active')
+                    .removeClass('active');
+
+                if($this.hasClass('btn-edit') || $this.hasClass('btn-delete')) {
+                    $input.attr(disabled, disabled);
+                }
+                else {
+                    $input
+                        .removeAttr(disabled)
+                        .focus();
+                }
+            });
+
+            $(window).on('keyup', function(e) {
+                const { altKey = false, key = '0'} = e;
+                if(altKey) {
+                    const $li = $(`${selItems}.active`);
+
+                    if(key === '1' || key === 'Enter') {
+                        $li.find('.btn-name:first').trigger('click');
+                        triggerNextList();
+                    }
+                    else if(key === '2') {
+                        $li.find('.btn-edit:first').trigger('click');
+                        triggerNextList();
+                    }
+                    else if(key === '3') {
+                        $li.find('.btn-delete:first').trigger('click');
+                        triggerNextList();
+                    }
+                    else if(key === 'Up') {
+                        triggerNextList();
+                    }
+                }
             });
         }
         else {
             $(selItems).off('click');
+            $(selButtons).off('click');
+            $(window).off('keyup');
         }
     };
 
-    const createFile = ({date, folder, name, size}) => {
+    const createFile = ({date, folder, height, name, size, width}) => {
         const $html = $('#list .template').clone();
         $html
             .removeClass('template')
-            .data('fullpath', folder + name)
-            .data('date', date)
-            .data('name', name)
-            .data('size', size)
+            .attr('data-fullpath', folder + name)
+            .attr('data-date', date)
+            .attr('data-height', height)
+            .attr('data-name', name)
+            .attr('data-size', size)
+            .attr('data-width', width);
 
         $html.find('.date:first').text(dateTime(date * 1000));
         $html.find('.name:first').text(name);
-        $html.find('.size:first').text(smartConvert(size));
+        $html.find('.size:first').text(
+            `${smartConvert(size)} - ${width} x ${height}`
+        );
 
-        if($('#list').children().length <= 1) {
-            $('#list').prepend($html);
-        }
-        else {
-            $('#list').append($html);
-        }
+        $('#list').append($html);
     };
 
     const convertFilepath = fullpath => fullpath.replace(/^E\:\//, 'http://file/');
@@ -101,6 +238,8 @@ import { smartConvert } from './component/filesize';
             enableButtons(true);
         }
     };
+
+    const triggerNextList = () => $(`${selItems}.active`).next().find('.name:first').trigger('click');
 
     $(function() {
         bindEvents();

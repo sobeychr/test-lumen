@@ -8,10 +8,20 @@ $maxHeight: 770px;
 #list {
     margin-top: 30px;
     max-height: $maxHeight;
+    min-width: 450px;
     overflow-y: auto;
 
     .list-group-item {
-        cursor: pointer;
+        &:not(.template) {
+            display: flex;
+        }
+        &>div {
+            width: 49.5%;
+
+            &:first {
+                margin-right: 1%;
+            }
+        }
 
         .name {
             display: block;
@@ -27,6 +37,10 @@ $maxHeight: 770px;
                 font-style: italic;
             }
         }
+
+        .buttons {
+            margin-top: 10px;
+        }
     }
 }
 
@@ -39,5 +53,30 @@ $maxHeight: 770px;
     video {
         max-height: $maxHeight;
         max-width: 100%;
+    }
+
+    .height,
+    .width {
+        color: #aaa;
+        font-style: italic;
+        margin: 0;
+        padding: 0;
+
+        &:after {
+            content: 'px';
+        }
+    }
+
+    .height:before {
+        content: 'height:';
+        margin-right: 5px;
+    }
+    .width {
+        margin-top: 7px;
+
+        &:before {
+            content: 'width:';
+            margin-right: 5px;
+        }
     }
 }

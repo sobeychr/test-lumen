@@ -5,7 +5,7 @@ import * as encoder from './component/encoder';
     const bindEvents = () => {
         $('.parser button').on('click', function() {
             const $this = $(this);
-            const func = $this.parent('.parser').data('func');
+            const func = $this.parent('.parser').attr('data-func');
             const isOn = $this.hasClass('on');
             const input = $('#in').val();
 

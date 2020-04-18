@@ -45,7 +45,8 @@ $inputColorEdit: #fff;
 input[type='text'],
 textarea {
     border: 1px solid $inputColorOut;
-    background: #303030;
+    border-radius: 7px;
+    background: #121212;
     color: $inputColorOut;
     padding: 5px;
     outline: none;
@@ -60,6 +61,12 @@ textarea {
         border-color: $inputColorEdit;
         color: $inputColorEdit;
     }
+}
+
+input[type='text']:disabled,
+textarea:disabled {
+    background: #777;
+    font-style: italic;
 }
 
 $gacWidth: 620px;
@@ -77,4 +84,10 @@ $gacWidth: 620px;
 
 .list-group-item.template {
     display: none;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
