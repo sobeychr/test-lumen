@@ -43,6 +43,8 @@ class SortController extends BaseController
         $failures = 0;
         $log = [];
 
+        $names = [];
+
         foreach($list as $parse) {
             list($source, $status) = $parse;
 
@@ -61,12 +63,24 @@ class SortController extends BaseController
                     $destRoot = SortConfig::DEST_DELETE;
                 }
                 else {
+                    $index = $names[$status] ?? 0;
+
                     $destRoot = SortConfig::DEST_NAME;
-                    $destName = $status . substr($destName, strpos($destName, '.'));
+                    $destName = $status
+                        . '-' . $index
+                        . substr($destName, strpos($destName, '.'));
+
+                    if(array_key_exists($status, $names)) {
+                        $names[$status]++;
+                    }
+                    else {
+                        $names[$status] = 1;
+                    }
                 }
 
                 $dest = $destRoot . $destName;
-                $success = rename($source, $dest);
+                // $success = rename($source, $dest);
+                $success = false;
 
                 if($success) {
                     $successes++;
@@ -158,5 +172,10 @@ class SortController extends BaseController
             'path' => $folderPath,
             'status' => 'success',
         ]);
+    }
+
+    private function fetchNames():array
+    {
+
     }
 }

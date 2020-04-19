@@ -172,10 +172,10 @@ import { smartConvert } from './component/filesize';
 
             $(window).on('keyup', function(e) {
                 const { altKey = false, key = '0'} = e;
-                if(altKey) {
-                    const $li = $(`${selItems}.active`);
+                const $li = $(`${selItems}.active`);
 
-                    if(key === '1' || key === 'Enter') {
+                if(altKey) {
+                    if(key === '1') {
                         $li.find('.btn-name:first').trigger('click');
                         triggerNextList();
                     }
@@ -193,6 +193,10 @@ import { smartConvert } from './component/filesize';
                     else if(key === 'ArrowUp') {
                         triggerNextList(false);
                     }
+                }
+                else if(key === 'Enter') {
+                    $li.find('.btn-name:first').trigger('click');
+                    triggerNextList();
                 }
             });
         }
