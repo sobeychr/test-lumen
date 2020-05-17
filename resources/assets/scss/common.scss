@@ -52,6 +52,7 @@ textarea {
     outline: none;
 
     &:focus {
+        background: #333;
         border-color: $inputColorIn;
         box-shadow: 0 0 2px $inputColorIn;
         color: $inputColorIn;
@@ -65,7 +66,8 @@ textarea {
 
 input[type='text']:disabled,
 textarea:disabled {
-    background: #777;
+    background: #333;
+    border: none;
     font-style: italic;
 }
 

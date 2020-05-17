@@ -12,7 +12,6 @@ class IndexController extends BaseController
     {
         return [
             'links' => [
-                // 'download',
                 'parser',
                 'sort',
                 'timer',

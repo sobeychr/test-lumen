@@ -1,0 +1,19 @@
+.current {
+    input, span {
+        font-size: 3.3em !important;
+        margin-top: 3em;
+    }
+    input {
+        text-indent: 1em;
+    }
+}
+
+.timer-forms {
+    input[type='submit'] {
+        display: none;
+    }
+
+    &>.input-group {
+        margin-bottom: 1em;
+    }
+}
